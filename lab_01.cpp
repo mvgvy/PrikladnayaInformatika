@@ -11,16 +11,25 @@ double f(double x) {
 
 void g(int width, int height, double x0, double x1) {
     double step = (x1 - x0) / width;
-    vector<double> values;
+    double *values = new double[width];
     auto segment = x0;
 
     for (int i = 0; i < width; ++i) {
-        values.push_back(f(segment));
+        values[i] = f(segment);
         segment += step;
     }
-    double min= *min_element(begin(values), end(values));
-    double max= *max_element(begin(values), end(values));
+    double min= values[0];
+    double max= values[0];
+    for (int i=0;i<width;i++)
+    {
+        if (values[i] < min) {
+            min = i;
+        }
 
+        if (values[i] > max) {
+            max = i;
+        }
+    }
     min = (max > 0 & min > 0) ? 0 : min;
     max = (max < 0 & min < 0) ? 0 : max;
 
@@ -29,9 +38,11 @@ void g(int width, int height, double x0, double x1) {
     double rel_height = height;
     fstream fout;
     fout.open("output.txt");
+    int value;
     for (int i = 0; i < height + 1; i++) {
-        for (auto value : values) {
-            value = floor((value - min) * scale);
+        for (int val = 0; val != width; val++) {
+
+            value = floor((values[val] - min) * scale);
             if (rel_height == zero_height)
                 fout << '-';
             else if (value > rel_height && rel_height > zero_height)
@@ -45,6 +56,7 @@ void g(int width, int height, double x0, double x1) {
         fout << endl;
         rel_height--;
     }
+    delete [] values;
 }
 
 
