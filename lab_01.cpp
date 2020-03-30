@@ -21,11 +21,11 @@ void g(int width, int height, double x0, double x1) {
     for (int i=0;i<width;i++)
     {
         if (values[i] < min) {
-            min = i;
+            min = values[i];
         }
 
         if (values[i] > max) {
-            max = i;
+            max = values[i];
         }
     }
     min = (max > 0 & min > 0) ? 0 : min;
