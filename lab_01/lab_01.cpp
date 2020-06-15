@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 #include  <fstream>
+#include <algorithm>
 using namespace std;
 
 double f(double x) {
@@ -21,11 +23,11 @@ void g(int width, int height, double x0, double x1) {
     for (int i=0;i<width;i++)
     {
         if (values[i] < min) {
-            min = values[i];
+            min = i;
         }
 
         if (values[i] > max) {
-            max = values[i];
+            max = i;
         }
     }
     min = (max > 0 & min > 0) ? 0 : min;
