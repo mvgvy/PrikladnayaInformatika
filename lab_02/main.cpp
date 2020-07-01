@@ -1,24 +1,13 @@
 #include <iostream>
 #include "safe_long_long_t.h"
-#include "array.h"
+#include "array23.h"
 int main() {
     std::cout << "task1" <<std::endl;
-    Array arr1(4);
-    Array arr2(3);
+        auto array = new Array(3);
+        auto array_2 = array;
+        std::cout<<array_2<<std::endl;
+        std::cout<<array<<std::endl;
 
-    arr1.display();
-    arr2.display();
-
-    bool b1 = arr1 > arr2;
-    bool b2 = arr1 < arr2;
-    bool b3 = arr1 == arr2;
-    bool b4 = arr1 != arr2;
-
-    printf("B1 = %d\nB2 = %d\nB3 = %d\nB4 = %d\n", b1, b2, b3, b4);
-
-    Array arr3 = arr1 + arr2;
-    std::cout << arr3.getSize() << std::endl;
-    arr3.display();
     std::cout << "task2"<< std::endl;
     safe_long_long_t a(15);
     std::cout << a + 15<< std::endl;;
